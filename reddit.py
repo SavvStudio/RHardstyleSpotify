@@ -25,7 +25,8 @@ def get_children_from_json_data(json_data):
 def get_urls_from_children(children):
     urls = []
     for child in children:
-        urls.append(child["data"]["url"])
+        if(child["data"]["score"] > 5):
+            urls.append(child["data"]["url"])
     return urls
 
 def extract_info_from_urls(urls):
