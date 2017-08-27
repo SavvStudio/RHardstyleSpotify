@@ -4,8 +4,12 @@ import spotify
 
 def main():
     access_token = get_access_token()
+    spotify.clear_playlist(access_token)
+    print("Playlist cleared!")
     track_ids = get_track_ids(access_token)
     spotify.add_tracks_to_playlist(track_ids, access_token)
+    print("New tracks added!")
+    
 
 def get_access_token():
     access = spotify_configuration.get_configuration()
