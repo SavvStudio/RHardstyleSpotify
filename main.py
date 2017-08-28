@@ -1,6 +1,8 @@
 import spotify_configuration
 import reddit
 import spotify
+import spotify_auth_refresh
+import json
 
 def main():
     access_token = get_access_token()
@@ -8,12 +10,11 @@ def main():
     print("Playlist cleared!")
     track_ids = get_track_ids(access_token)
     spotify.add_tracks_to_playlist(track_ids, access_token)
-    print("New tracks added!")
-    
+    print(str(len(track_ids)) + " new tracks added!")
 
 def get_access_token():
     access = spotify_configuration.get_configuration()
-    access_token = access["access_token"]
+    access_token = spotify_auth_refresh.refresh_access_token(access["refresh_token"], access["client_id"], access["client_secret"],access["redirect_uri"])
     return access_token
 
 def get_track_ids(access_token):
