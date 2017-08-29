@@ -1,10 +1,8 @@
 import requests
 import json
-import configparser
+import spotify_configuration
 
-config = configparser.ConfigParser()
-config.read("C:\\Users\\Savvas\\RHardstyleSpotifyAccess.ini")
-access = config["RHARDSTYLESPOTIFY_ACCESS"]
+access = spotify_configuration.get_configuration()
 
 client_id = access["client_id"]
 client_secret = access["client_secret"]
