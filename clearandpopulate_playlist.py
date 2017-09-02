@@ -3,14 +3,18 @@ import reddit
 import spotify
 import spotify_auth_refresh
 import datetime
+import database
+
 def run_playlist_creation():
     print("Date: " + str(datetime.datetime.today()))
     access_token = get_access_token()
     spotify.clear_playlist(access_token)
     print("Playlist cleared!")
     track_ids = get_track_ids(access_token)
+    
     spotify.add_tracks_to_playlist(track_ids, access_token)
     print(str(len(track_ids)) + " new tracks added!")
+    database.log_run()
 
 def get_access_token():
     access = spotify_configuration.get_configuration()
