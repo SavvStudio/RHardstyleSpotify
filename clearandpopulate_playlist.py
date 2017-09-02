@@ -11,10 +11,12 @@ def run_playlist_creation():
     spotify.clear_playlist(access_token)
     print("Playlist cleared!")
     track_ids = get_track_ids(access_token)
-    
+    print("Retrieved " + str(len(track_ids)) + " tracks from Reddit...")
     spotify.add_tracks_to_playlist(track_ids, access_token)
-    print(str(len(track_ids)) + " new tracks added!")
+    print(str(len(track_ids)) + " new tracks added to the Spotify playlist!")
+    print("---------------------------------------------------------------------------")
     database.log_run()
+
 
 def get_access_token():
     access = spotify_configuration.get_configuration()
